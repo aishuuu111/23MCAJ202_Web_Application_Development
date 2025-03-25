@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Background Color Changer</title>
+</head>
+<body>
+    <h1>Background Color Changer</h1>
+    <button id="colorButton">Click Me!</button>
+
+    <script>
+        // Function to generate a random color
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        // Event handler for button click
+        document.getElementById('colorButton').addEventListener('click', function () {
+            document.body.style.backgroundColor = getRandomColor();
+        });
+    </script>
+</body>
+</html>

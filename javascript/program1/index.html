@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+</head>
+<body>
+    <h2>Registration Form</h2>
+    <form id="registrationForm">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" placeholder="Enter your name"><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" placeholder="Enter your email"><br><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" placeholder="Enter your password"><br><br>
+
+        <label for="phone">Phone:</label><br>
+        <input type="text" id="phone" placeholder="Enter your phone number"><br><br>
+
+        <button type="button" onclick="validateForm()">Submit</button>
+    </form>
+
+    <script>
+        function validateForm() {
+            // Get form inputs
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+
+            // Validation flag
+            let isValid = true;
+
+            // Name validation (only alphabets allowed)
+            const namePattern = /^[A-Za-z\s]+$/; // Allows letters and spaces only
+            if (name === "") {
+                alert("Name is required!");
+                isValid = false;
+            } else if (!namePattern.test(name)) {
+                alert("Name must contain only alphabets!");
+                isValid = false;
+            }
+
+            // Email validation
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address!");
+                isValid = false;
+            }
+
+            // Password validation
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters long!");
+                isValid = false;
+            }
+
+            // Phone validation
+            const phonePattern = /^[0-9]{10}$/;
+            if (!phonePattern.test(phone)) {
+                alert("Please enter a valid 10-digit phone number!");
+                isValid = false;
+            }
+
+            // If everything is valid
+            if (isValid) {
+                alert("Form submitted successfully!");
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+          
+

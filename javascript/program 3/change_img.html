@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mouse Hover Example</title>
+</head>
+<body>
+    <h1>Hover Over the Content!</h1>
+
+    <!-- Initial Image -->
+    <img id="image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ73vThI4h5TKjm32c9613m8wX0HEubfnKVcg&s" alt="Default Image" width="300" height="200">
+    <p id="text">BEAUTIFUL FLOWERS!</p>
+
+    <script>
+        // Image Hover Event
+        document.getElementById('image').onmouseover = function() {
+            this.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8sT8wTtWPLgPclrDl7Mluemd5knTPFxIkwA&s"; // Change to a new image
+        };
+
+        document.getElementById('image').onmouseout = function() {
+            this.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ73vThI4h5TKjm32c9613m8wX0HEubfnKVcg&s"; // Revert to default image
+        };
+
+        // Text Hover Event
+        document.getElementById('text').onmouseover = function() {
+            this.textContent = "THE BEAUTY OF NATURE CANNOT BE EXPLAINED IN WORDS";
+        };
+
+        document.getElementById('text').onmouseout = function() {
+            this.textContent = "BEAUTIFUL FLOWERS!";
+        };
+    </script>
+</body>
+</html>
+
+

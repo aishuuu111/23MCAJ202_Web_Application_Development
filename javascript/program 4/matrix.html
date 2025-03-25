@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix Symmetry Check</title>
+</head>
+<body>
+    <h1>Check Matrix Symmetry</h1>
+    <p>Enter the size of the square matrix (e.g., 3 for 3x3):</p>
+    <input type="number" id="matrixSize" min="1" placeholder="Matrix size">
+    <button onclick="generateMatrixInputs()">Generate Matrix Inputs</button>
+    <div id="matrixInputs"></div>
+    <button onclick="checkSymmetry()">Check Symmetry</button>
+    <p id="result"></p>
+
+    <script>
+        function generateMatrixInputs() {
+            const size = parseInt(document.getElementById('matrixSize').value);
+            const container = document.getElementById('matrixInputs');
+            container.innerHTML = ''; // Clear previous inputs
+
+            if (isNaN(size) || size < 1) {
+                alert("Please enter a valid matrix size.");
+                return;
+            }
+
+            // Create input fields for the matrix
+            for (let i = 0; i < size; i++) {
+                const row = document.createElement('div');
+                for (let j = 0; j < size; j++) {
+                    const input = document.createElement('input');
+                    input.type = 'number';
+                    input.placeholder = `(${i},${j})`;
+                    input.style.margin = '5px';
+                    input.dataset.row = i;
+                    input.dataset.col = j;
+                    row.appendChild(input);
+                }
+                container.appendChild(row);
+            }
+        }
+
+        function checkSymmetry() {
+            const size = parseInt(document.getElementById('matrixSize').value);
+            const inputs = document.querySelectorAll('#matrixInputs input');
+
+            const matrix = Array(size).fill(null).map(() => Array(size).fill(null));
+            inputs.forEach(input => {
+                const row = parseInt(input.dataset.row);
+                const col = parseInt(input.dataset.col);
+                matrix[row][col] = parseInt(input.value) || 0;
+            });
+
+            // Check if the matrix is symmetric
+            let isSymmetric = true;
+            for (let i = 0; i < size; i++) {
+                for (let j = 0; j < size; j++) {
+                    if (matrix[i][j] !== matrix[j][i]) {
+                        isSymmetric = false;
+                        break;
+                    }
+                }
+            }
+
+            // Display result
+            const result = document.getElementById('result');
+            if (isSymmetric) {
+                result.textContent = "The matrix is symmetric.";
+                result.style.color = "green";
+            } else {
+                result.textContent = "The matrix is not symmetric.";
+                result.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
